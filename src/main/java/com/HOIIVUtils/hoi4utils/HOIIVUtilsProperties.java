@@ -25,6 +25,10 @@ public class HOIIVUtilsProperties {
 			: System.getProperty("user.home") + File.separator + "HOIIVUtils" + File.separator + "hoi4utils.properties";
 	private static Properties properties = new Properties();
 
+	private HOIIVUtilsProperties() {
+		// private constructor to hide the implicit public one
+	}
+
 	public static void loadSettings() {
 		try {
 			File oldFile = new File(OLD_PROPERTIES_PATH);
