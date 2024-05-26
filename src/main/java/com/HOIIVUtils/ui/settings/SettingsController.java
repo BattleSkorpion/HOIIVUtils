@@ -250,7 +250,7 @@ public class SettingsController extends Application implements FXWindow {
 	public void handleDelSettingsButtonAction() {
 		try {
 			// Delete all the settings
-			HOIIVUtilsProperties.deleteAllSettings();
+			SettingsManager.deleteAllSettings();
 		} catch (IOException e) {
 			// If there was an IOException while deleting the settings, print the stack
 			// trace
@@ -401,17 +401,17 @@ public class SettingsController extends Application implements FXWindow {
 			if (Boolean.TRUE.equals(HOIIVUtils.firstTimeSetup)) {
 				// If firstTimeSetup is true, create a new SettingsManager with the tempSettings
 				// This is also cancer
-				HOIIVUtilsProperties.settings = new HOIIVUtilsProperties(tempSettings);
+				SettingsManager.settings = new SettingsManager(tempSettings);
 				HOIIVUtils.firstTimeSetup = false;
 				// Load the saved settings into the SettingsManager
-				HOIIVUtilsProperties.getSavedSettings();
+				SettingsManager.getSavedSettings();
 				// If the modPathFile is null, create a new HOIIVFilePaths object
 				if (HOIIVFile.modPathFile == null) {
 					HOIIVFile.createHOIIVFilePaths();
 				}
 			} else {
 				// If firstTimeSetup is false, save the tempSettings to the settings file
-				HOIIVUtilsProperties.saveSettings(tempSettings);
+				SettingsManager.saveSettings(tempSettings);
 			}
 		} catch (IOException exception) {
 			// If there was an IOException while saving the settings, open an error window

@@ -2,7 +2,7 @@ package com.HOIIVUtils.hoi4utils.clausewitz_data.country;
 
 import com.HOIIVUtils.hoi4utils.FileUtils;
 import com.HOIIVUtils.hoi4utils.HOIIVUtils;
-import com.HOIIVUtils.hoi4utils.HOIIVUtilsProperties;
+import com.HOIIVUtils.hoi4utils.SettingsManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -22,10 +22,10 @@ public class CountryTags extends HOIIVUtils implements Iterable<CountryTag> {
 
 	private static ArrayList<CountryTag> loadCountryTags() throws IOException {
 		country_tags = new ArrayList<>();
-		country_tags_folder = new File(HOIIVUtilsProperties.get(MOD_PATH) + "\\common\\country_tags");
+		country_tags_folder = new File(SettingsManager.get(MOD_PATH) + "\\common\\country_tags");
 		countries_main_file = new File(country_tags_folder.getPath() + "\\00_countries.txt");
 
-		if (HOIIVUtilsProperties.get(MOD_PATH) == null) {
+		if(SettingsManager.get(MOD_PATH) == null) {
 			return null;
 		}
 		if (!country_tags_folder.isDirectory()) {
@@ -48,16 +48,16 @@ public class CountryTags extends HOIIVUtils implements Iterable<CountryTag> {
 						continue;
 					}
 					country_tags.add(tag);
-					// System.out.println(data.substring(0, data.indexOf('=')));
+					//System.out.println(data.substring(0, data.indexOf('=')));
 				}
 			}
 		} else {
 			System.out.println("loading default country tags because country_tags\\00_countries does not exist");
-			File country_tags_default_folder = new File("hoi4files\\country_tags"); // with program
+			File country_tags_default_folder = new File("hoi4files\\country_tags"); 	// with program
 			if (!country_tags_default_folder.exists()) {
 				throw new IOException("Missing " + country_tags_default_folder);
 			}
-			for (File file : country_tags_default_folder.listFiles()) {
+			for (File file: country_tags_default_folder.listFiles()) {
 				countryTagsReader = new Scanner(file);
 
 				// make a list of country tags
@@ -95,7 +95,7 @@ public class CountryTags extends HOIIVUtils implements Iterable<CountryTag> {
 						// takes the defined tag at the beginning of the line
 						CountryTag tag = new CountryTag(data.substring(0, data.indexOf('=')).trim());
 						if (tag.equals(CountryTag.NULL_TAG)) {
-							continue;
+							continue; 
 						}
 						country_tags.add(tag);
 					}
@@ -105,7 +105,7 @@ public class CountryTags extends HOIIVUtils implements Iterable<CountryTag> {
 
 		if (countryTagsReader != null) {
 			countryTagsReader.close();
-		}
+		} 
 
 		return country_tags;
 	}
@@ -117,7 +117,8 @@ public class CountryTags extends HOIIVUtils implements Iterable<CountryTag> {
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
-		} else {
+		}
+		else {
 			return country_tags;
 		}
 	}
