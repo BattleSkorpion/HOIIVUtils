@@ -1,6 +1,6 @@
 package com.HOIIVUtils.hoi4utils.clausewitz_data.gfx;
 
-import com.HOIIVUtils.hoi4utils.SettingsManager;
+import com.HOIIVUtils.hoi4utils.HOIIVUtilsProperties;
 
 import java.io.File;
 
@@ -10,8 +10,8 @@ import static com.HOIIVUtils.hoi4utils.Settings.MOD_PATH;
  * This is the SpriteType file.
  */
 public class SpriteType {
-	String name;			// ex: "GFX_focus_SVA_virginia_officers"
-	File texturefile;	   // ex: "gfx/interface/goals/focus_SVA_virginia_officers.dds"
+	String name; // ex: "GFX_focus_SVA_virginia_officers"
+	File texturefile; // ex: "gfx/interface/goals/focus_SVA_virginia_officers.dds"
 
 	public SpriteType(String name, File texturefile) {
 		this.name = name;
@@ -36,23 +36,27 @@ public class SpriteType {
 
 	/**
 	 * Returns absolute path texturefile for the gfx.
-	 * "Absolute" in this context refers to mod directory + relative path of the texturefile as parsed
+	 * "Absolute" in this context refers to mod directory + relative path of the
+	 * texturefile as parsed
+	 * 
 	 * @return absolute path texturefile for the gfx
 	 */
 	public File getTexturefileAbsolute() {
-		return new File(SettingsManager.get(MOD_PATH) + "\\" + texturefile.getPath());
+		return new File(HOIIVUtilsProperties.get(MOD_PATH) + "\\" + texturefile.getPath());
 	}
 
 	/**
 	 * Returns the absolute filepath of the texturefile for this spriteType/gfx.
-	 * "Absolute" in this context refers to mod directory + relative path of the texturefile as parsed.
+	 * "Absolute" in this context refers to mod directory + relative path of the
+	 * texturefile as parsed.
+	 * 
 	 * @return absolute filepath of texturefile for this gfx
 	 */
 	public String getGFX() {
-		return SettingsManager.get(MOD_PATH) + "\\" + texturefile.getPath();
+		return HOIIVUtilsProperties.get(MOD_PATH) + "\\" + texturefile.getPath();
 	}
 
 	public String getName() {
-			return name;
+		return name;
 	}
 }

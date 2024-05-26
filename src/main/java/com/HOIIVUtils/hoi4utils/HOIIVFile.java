@@ -24,7 +24,7 @@ public class HOIIVFile implements FileUtils {
 	public static final File usersParadoxHOIIVModFolder = new File(
 			File.separator + "Paradox Interactive" + File.separator + "Hearts of Iron IV" + File.separator + "mod");
 
-	public static final String modPath = SettingsManager.get(Settings.MOD_PATH);
+	public static final String modPath = HOIIVUtilsProperties.get(Settings.MOD_PATH);
 
 	public static FileWatcher stateFilesWatcher;
 
@@ -40,7 +40,7 @@ public class HOIIVFile implements FileUtils {
 	public static File units_folder;
 
 	public static void createHOIIVFilePaths() {
-		String modPath = SettingsManager.get(Settings.MOD_PATH);
+		String modPath = HOIIVUtilsProperties.get(Settings.MOD_PATH);
 		System.out.println("modPath: " + modPath);
 
 		if (modPath == null) {
