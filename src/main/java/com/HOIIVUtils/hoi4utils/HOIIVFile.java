@@ -23,7 +23,7 @@ public class HOIIVFile implements FileUtils {
 	@SuppressWarnings("exports")
 	public static FileWatcher stateFilesWatcher;
 
-	public static File modPathFile;
+	public static File mod_folder;
 
 	public static File mod_focus_folder;
 	public static File mod_ideas_folder;
@@ -49,6 +49,7 @@ public class HOIIVFile implements FileUtils {
 
 		File modPathFile = new File(modPath);
 
+		mod_folder = new File(modPath);
 		mod_common_folder = new File(modPath + "\\common");
 		mod_states_folder = new File(modPath + "\\history\\states");
 		mod_strat_region_dir = new File(modPath + "\\map\\strategicregions");

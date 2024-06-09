@@ -219,7 +219,8 @@ public class SettingsController extends Application implements FXWindow {
 	 */
 	public void handleModPathTextField() {
 		String pathText = modPathTextField.getText();
-		if (pathText.isEmpty()) return;
+		if (pathText.isEmpty())
+			return;
 
 		File modFile = new File(pathText);
 		setFolderSettingIfValid(modFile, MOD_PATH);
@@ -227,7 +228,8 @@ public class SettingsController extends Application implements FXWindow {
 
 	public void handleHOI4PathTextField() {
 		String pathText = HOI4PathTextField.getText();
-		if (pathText.isEmpty()) return;
+		if (pathText.isEmpty())
+			return;
 
 		File modFile = new File(pathText);
 		setFolderSettingIfValid(modFile, HOI4_PATH);
@@ -278,18 +280,19 @@ public class SettingsController extends Application implements FXWindow {
 		File modFile = new File(FileUtils.usersDocuments + File.separator + HOIIVFile.usersParadoxHOIIVModFolder);
 
 		modFile = openChooser(modFolderBrowseButton, modFile, true);
-		if (modFile == null) return;
+		if (modFile == null)
+			return;
 		modPathTextField.setText(modFile.getAbsolutePath());
 		setFolderSettingIfValid(modFile, MOD_PATH);
 	}
 
 	public void handleHOI4FileBrowseAction() {
-		File hoi4File = FileUtils.ProgramFilesX86 == null
-				? null
-				: new File(FileUtils.ProgramFilesX86 + File.separator + FileUtils.steamHOI4LocalPath);
+		File hoi4File =
+				FileUtils.ProgramFilesX86 == null ? null : new File(FileUtils.ProgramFilesX86 + File.separator + FileUtils.steamHOI4LocalPath);
 
 		hoi4File = openChooser(hoi4FolderBrowseButton, hoi4File, true);
-		if (hoi4File == null) return;
+		if (hoi4File == null)
+			return;
 		HOI4PathTextField.setText(hoi4File.getAbsolutePath());
 		setFolderSettingIfValid(hoi4File, HOI4_PATH);
 	}
