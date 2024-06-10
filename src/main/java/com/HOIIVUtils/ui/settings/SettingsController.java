@@ -79,8 +79,8 @@ public class SettingsController extends Application implements FXWindow {
 		setDefault();
 
 		// If there is saved settings, load them into the settings window
-		if (Boolean.FALSE.equals(HOIIVUtils.firstTimeSetup)) {
-			// who wrote it in this order lmao
+		if (Boolean.FALSE.equals(!new File(SettingsManager.NEW_PROPERTIES_PATH).exists())) { // This was it, this one line was the reason my code was not working
+			System.out.println("SettingsController: Loading saved settings...");
 			if (!"null".equals(MOD_PATH.getSetting())) {
 				modPathTextField.setText((String) MOD_PATH.getSetting());
 			}
