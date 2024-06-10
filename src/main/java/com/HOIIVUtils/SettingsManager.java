@@ -232,18 +232,9 @@ public class SettingsManager {
 	 * @throws IOException if an I/O error occurs
 	 */
 	public static void deleteAllSettings() throws IOException {
-		try (Stream<Path> paths = Files.walk(Paths.get(NEW_PROPERTIES_PATH))) {
-			// Sort the paths in reverse order so that the
-			// directories are deleted first
-			paths.sorted(Comparator.reverseOrder()).forEach(path -> {
-				try {
-					System.out.println("Deleting: " + path);
-					Files.delete(path);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			});
-		}
+		// Delete the settings folder recursively
+		Files.walk(Paths.get(NEW_PROPERTIES_PATH_PARENT)).sorted(Comparator.reverseOrder()).map(Path::toFile)
+				.forEach(File::delete);
 	}
 
 	public static String get(Settings setting) {
