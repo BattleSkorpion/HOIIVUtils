@@ -300,6 +300,9 @@ public class SettingsController extends Application implements FXWindow {
 		System.out.println("Dev Mode: " + devModeCheckBox.isSelected());
 		drawFocusTreesCheckBox.setDisable(Settings.DEV_MODE.disabled()); // TODO this is causing a bug
 		System.out.println("Draw Focus Trees: " + drawFocusTreesCheckBox.isDisabled());
+		boolean disabled = Settings.DEV_MODE.disabled();
+		drawFocusTreesCheckBox.setDisable(disabled);
+		// TODO this is causing a exception when it is first time setup, but it still saves the dev mode
 	}
 
 	public void handleDrawFocusTreesCheckBoxAction() {
