@@ -92,10 +92,10 @@ public class MenuController extends Application implements FXWindow {
 		if (!Settings.DEMO_MODE.enabled()) {
 			State.read();
 			FocusTree.read();
-		}
-		// ???
-		if (Settings.ATTEMPT_LOAD_LOCALIZATION.enabled()) {
-			FocusTree.attemptReadLocalization();
+			// ???
+			if (Settings.ATTEMPT_LOAD_LOCALIZATION.enabled()) {
+				FocusTree.attemptReadLocalization();
+			}
 		}
 	}
 
