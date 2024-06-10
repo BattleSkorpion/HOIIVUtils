@@ -39,7 +39,7 @@ public class SettingsController extends Application implements FXWindow {
 	@FXML
 	public TextField modPathTextField;
 	@FXML
-	public TextField HOI4PathTextField;
+	public TextField hoi4PathTextField;
 	@FXML
 	public Label idHOIIVModFolderLabel;
 	@FXML
@@ -82,7 +82,7 @@ public class SettingsController extends Application implements FXWindow {
 				modPathTextField.setText((String) MOD_PATH.getSetting());
 			}
 			if (!"null".equals(HOI4_PATH.getSetting())) {
-				HOI4PathTextField.setText((String) HOI4_PATH.getSetting());
+				hoi4PathTextField.setText((String) HOI4_PATH.getSetting());
 			}
 			devModeCheckBox.setSelected(Settings.DEV_MODE.enabled());
 			drawFocusTreesCheckBox.setSelected(Settings.DRAW_FOCUS_TREE.enabled());
@@ -124,7 +124,7 @@ public class SettingsController extends Application implements FXWindow {
 		modFolderBrowseButton.setDisable(value);
 		modPathTextField.setDisable(value);
 		hoi4FolderBrowseButton.setDisable(value);
-		HOI4PathTextField.setDisable(value);
+		hoi4PathTextField.setDisable(value);
 	}
 
 	public void launchSettingsWindow(String[] args) {
@@ -226,8 +226,8 @@ public class SettingsController extends Application implements FXWindow {
 		setFolderSettingIfValid(modFile, MOD_PATH);
 	}
 
-	public void handleHOI4PathTextField() {
-		String pathText = HOI4PathTextField.getText();
+	public void handleHOIIVPathTextField() {
+		String pathText = hoi4PathTextField.getText();
 		if (pathText.isEmpty())
 			return;
 
@@ -259,7 +259,7 @@ public class SettingsController extends Application implements FXWindow {
 	private void setDefault() {
 		// Clear the mod path text field
 		modPathTextField.clear();
-		HOI4PathTextField.clear();
+		hoi4PathTextField.clear();
 		// Set the checkboxes to their default values
 		devModeCheckBox.setSelected(false);
 		drawFocusTreesCheckBox.setSelected(true);
@@ -286,14 +286,14 @@ public class SettingsController extends Application implements FXWindow {
 		setFolderSettingIfValid(modFile, MOD_PATH);
 	}
 
-	public void handleHOI4FileBrowseAction() {
+	public void handleHOIIVFileBrowseAction() {
 		File hoi4File =
 				FileUtils.ProgramFilesX86 == null ? null : new File(FileUtils.ProgramFilesX86 + File.separator + FileUtils.steamHOI4LocalPath);
 
 		hoi4File = openChooser(hoi4FolderBrowseButton, hoi4File, true);
 		if (hoi4File == null)
 			return;
-		HOI4PathTextField.setText(hoi4File.getAbsolutePath());
+		hoi4PathTextField.setText(hoi4File.getAbsolutePath());
 		setFolderSettingIfValid(hoi4File, HOI4_PATH);
 	}
 
@@ -378,7 +378,7 @@ public class SettingsController extends Application implements FXWindow {
 			// This is also cancer
 			SettingsManager.settings = new SettingsManager(tempSettings);
 			// If the modPathFile is null, create a new HOIIVFilePaths object
-			if (HOIIVFile.modPathFile == null) {
+			if (HOIIVFile.mod_folder == null) {
 				HOIIVFile.createHOIIVFilePaths();
 			}
 			HOIIVUtils.firstTimeSetup = false;
