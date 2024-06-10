@@ -89,8 +89,11 @@ public class MenuController extends Application implements FXWindow {
 			JOptionPane.showMessageDialog(null, "Error menu controller!");
 			e.printStackTrace();
 		}
-		State.read();
-		FocusTree.read();
+		if (!Settings.DEMO_MODE.enabled()) {
+			State.read();
+			FocusTree.read();
+		}
+		// ???
 		if (Settings.ATTEMPT_LOAD_LOCALIZATION.enabled()) {
 			FocusTree.attemptReadLocalization();
 		}
