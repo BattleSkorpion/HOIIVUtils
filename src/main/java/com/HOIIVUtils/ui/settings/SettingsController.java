@@ -79,7 +79,7 @@ public class SettingsController extends Application implements FXWindow {
 		setDefault();
 
 		// If there is saved settings, load them into the settings window
-		if (Boolean.FALSE.equals(!new File(SettingsManager.NEW_PROPERTIES_PATH).exists())) { // This was it, this one line was the reason my code was not working
+		if (Boolean.TRUE.equals(new File(SettingsManager.NEW_PROPERTIES_PATH).exists())) { // This was it, this one line was the reason my code was not working
 			System.out.println("SettingsController: Loading saved settings...");
 			if (!"null".equals(MOD_PATH.getSetting())) {
 				modPathTextField.setText((String) MOD_PATH.getSetting());
@@ -89,6 +89,7 @@ public class SettingsController extends Application implements FXWindow {
 			}
 			devModeCheckBox.setSelected(Settings.DEV_MODE.enabled());
 			drawFocusTreesCheckBox.setSelected(Settings.DRAW_FOCUS_TREE.enabled());
+			drawFocusTreesCheckBox.setDisable(!Settings.DEV_MODE.enabled());
 			idDemoModeCheckBox.setSelected(Settings.DEMO_MODE.enabled());
 			if (idDemoModeCheckBox.isSelected()) {
 				setDisablePathSelection(true);
@@ -265,7 +266,8 @@ public class SettingsController extends Application implements FXWindow {
 		hoi4PathTextField.clear();
 		// Set the checkboxes to their default values
 		devModeCheckBox.setSelected(false);
-		drawFocusTreesCheckBox.setSelected(true);
+		drawFocusTreesCheckBox.setDisable(true);
+		drawFocusTreesCheckBox.setSelected(false);
 		idDemoModeCheckBox.setSelected(false);
 		idOpenConsoleOnLaunchCheckBox.setSelected(false);
 		idSkipSettingsCheckBox.setSelected(false);
@@ -302,12 +304,8 @@ public class SettingsController extends Application implements FXWindow {
 
 	public void handleDevModeCheckBoxAction() {
 		updateTempSetting(Settings.DEV_MODE, devModeCheckBox.isSelected());
-		System.out.println("Dev Mode: " + devModeCheckBox.isSelected());
-		drawFocusTreesCheckBox.setDisable(Settings.DEV_MODE.disabled()); // TODO this is causing a bug
-		System.out.println("Draw Focus Trees: " + drawFocusTreesCheckBox.isDisabled());
-		boolean disabled = Settings.DEV_MODE.disabled();
-		drawFocusTreesCheckBox.setDisable(disabled);
-		// TODO this is causing a exception when it is first time setup, but it still saves the dev mode
+		drawFocusTreesCheckBox.setDisable(!devModeCheckBox.isSelected());
+		System.out.println("Focus Trees Checkbox: " + !devModeCheckBox.isSelected());
 	}
 
 	public void handleDrawFocusTreesCheckBoxAction() {

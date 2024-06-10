@@ -121,13 +121,8 @@ public enum Settings {
 		}
 
 		@Override
-		public boolean enabled() {
-			return super.enabled() || DEV_MODE.disabled();
-		}
-
-		@Override
 		public String defaultProperty() {
-			return "true";
+			return DEFAULT_VALUE;
 		}
 	},;
 
