@@ -1,6 +1,6 @@
 package com.HOIIVUtils.hoi4utils;
 
-import com.HOIIVUtils.hoi4utils.ioexceptions.SettingsWriteException;
+import com.HOIIVUtils.hoi4utils.exceptions.SettingsWriteException;
 
 public enum Settings {
 	MOD_PATH {

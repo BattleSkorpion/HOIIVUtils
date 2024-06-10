@@ -6,8 +6,8 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.stream.*;
 import java.util.*;
 
-import com.HOIIVUtils.hoi4utils.ioexceptions.SettingsFileException;
-import com.HOIIVUtils.hoi4utils.ioexceptions.SettingsWriteException;
+import com.HOIIVUtils.hoi4utils.exceptions.SettingsFileException;
+import com.HOIIVUtils.hoi4utils.exceptions.SettingsWriteException;
 
 /**
  * The SettingsManager class is responsible for managing the HOIIVUtils properties file. It provides
